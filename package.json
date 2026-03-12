@@ -16,11 +16,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/REPLACE_WITH_OWNER/deliveryhero-claude-proxy-monitor.git"
+    "url": "https://github.com/sh981013s/dh-claude-usage-check.git"
   },
-  "homepage": "https://github.com/REPLACE_WITH_OWNER/deliveryhero-claude-proxy-monitor",
+  "homepage": "https://github.com/sh981013s/dh-claude-usage-check",
   "bugs": {
-    "url": "https://github.com/REPLACE_WITH_OWNER/deliveryhero-claude-proxy-monitor/issues"
+    "url": "https://github.com/sh981013s/dh-claude-usage-check/issues"
   },
   "build": {
     "appId": "com.deliveryhero.claudeproxymonitor",
@@ -50,8 +50,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "REPLACE_WITH_OWNER",
-        "repo": "deliveryhero-claude-proxy-monitor"
+        "owner": "sh981013s",
+        "repo": "dh-claude-usage-check"
       }
     ]
   },
