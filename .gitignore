@@ -1,0 +1,16 @@
+node_modules/
+dist/
+out/
+release/
+
+.DS_Store
+.idea/
+Claude-Usage-Tracker-main/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+*.local
+*.swp

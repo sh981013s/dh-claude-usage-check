@@ -1,0 +1,62 @@
+{
+  "name": "deliveryhero-claude-proxy-monitor",
+  "version": "0.1.0",
+  "description": "DeliveryHero proxy usage monitor for Claude Code on macOS menu bar",
+  "private": false,
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "scan:usage": "node scripts/claude-usage-scan.js /tmp/claude-debug.txt",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --mac dmg zip",
+    "dist:mac": "electron-builder --mac dmg zip",
+    "release:dry": "electron-builder --mac dmg zip --publish never"
+  },
+  "author": "DeliveryHero",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/REPLACE_WITH_OWNER/deliveryhero-claude-proxy-monitor.git"
+  },
+  "homepage": "https://github.com/REPLACE_WITH_OWNER/deliveryhero-claude-proxy-monitor",
+  "bugs": {
+    "url": "https://github.com/REPLACE_WITH_OWNER/deliveryhero-claude-proxy-monitor/issues"
+  },
+  "build": {
+    "appId": "com.deliveryhero.claudeproxymonitor",
+    "productName": "DH Claude Proxy Monitor",
+    "files": [
+      "src/**/*",
+      "scripts/**/*",
+      "package.json",
+      "README.md",
+      "LICENSE"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "dmg": {
+      "sign": false
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "REPLACE_WITH_OWNER",
+        "repo": "deliveryhero-claude-proxy-monitor"
+      }
+    ]
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^26.8.1"
+  }
+}

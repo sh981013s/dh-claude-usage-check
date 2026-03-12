@@ -1,0 +1,430 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap');
+
+:root {
+  --bg: #070709;
+  --bg-2: #0f0b1d;
+  --card: rgba(21, 16, 34, 0.86);
+  --card-2: rgba(13, 10, 22, 0.72);
+  --accent: #b56dff;
+  --accent-2: #7b2fff;
+  --good: #00d0a8;
+  --warn: #ffb84d;
+  --danger: #ff6d9f;
+  --text: #f4f0ff;
+  --muted: #ad9ec9;
+  --line: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  background:
+    radial-gradient(120% 90% at 18% -10%, rgba(169, 83, 255, 0.45), transparent 46%),
+    radial-gradient(100% 80% at 86% -20%, rgba(107, 33, 255, 0.35), transparent 44%),
+    linear-gradient(165deg, var(--bg) 0%, var(--bg-2) 100%);
+  color: var(--text);
+  min-height: 100vh;
+  position: relative;
+}
+
+.background-glow {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(65% 45% at 50% 0%, rgba(188, 118, 255, 0.16), transparent 65%);
+  pointer-events: none;
+}
+
+.card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  width: calc(100vw - 20px);
+  max-width: 420px;
+  height: calc(100vh - 20px);
+  margin: 10px;
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 16px 48px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(194, 151, 255, 0.22);
+  backdrop-filter: blur(10px);
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  transform-style: preserve-3d;
+  transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform 180ms ease;
+  animation: cardIn 420ms ease-out;
+}
+
+.card::-webkit-scrollbar {
+  display: none;
+}
+
+.top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.pill {
+  font-size: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.pill.low {
+  color: #dbc3ff;
+  border-color: rgba(180, 113, 255, 0.45);
+  background: rgba(141, 69, 255, 0.18);
+}
+
+.pill.mid {
+  color: #f0c7ff;
+  border-color: rgba(220, 116, 255, 0.52);
+  background: rgba(180, 72, 255, 0.22);
+}
+
+.pill.high {
+  color: #ffd0ef;
+  border-color: rgba(255, 126, 205, 0.58);
+  background: rgba(255, 82, 176, 0.2);
+}
+
+.pill.unknown {
+  color: var(--muted);
+  border-color: var(--line);
+}
+
+.health-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.health-pill {
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.health-pill.good {
+  color: #b8ffe8;
+  border-color: rgba(0, 208, 168, 0.45);
+  background: rgba(0, 208, 168, 0.12);
+}
+
+.health-pill.warn {
+  color: #ffe2b8;
+  border-color: rgba(255, 184, 77, 0.45);
+  background: rgba(255, 184, 77, 0.12);
+}
+
+.health-pill.bad {
+  color: #ffd0dc;
+  border-color: rgba(255, 109, 159, 0.5);
+  background: rgba(255, 109, 159, 0.15);
+}
+
+.health-pill.unknown {
+  color: var(--muted);
+}
+
+.hero {
+  border: 1px solid var(--line);
+  background: rgba(153, 77, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.08) 45%, transparent 70%);
+  transform: translateX(-130%);
+  animation: heroSweep 3.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-label {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.hero-value {
+  font-size: 34px;
+  line-height: 1;
+  margin-top: 6px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 18px rgba(181, 109, 255, 0.28);
+}
+
+.bars {
+  margin-bottom: 8px;
+}
+
+.bar-row {
+  margin-bottom: 10px;
+}
+
+.bar-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.progress {
+  width: 100%;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #7a2fff, #c075ff);
+  transition: width 340ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progress-fill.weekly {
+  background: linear-gradient(90deg, #5a38ff, #9c64ff);
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.label {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.value {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.chart-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.24);
+  margin-bottom: 10px;
+}
+
+.chart-title {
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+#usageChart {
+  width: 100%;
+  height: 84px;
+  background:
+    linear-gradient(to top, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 21px, 30px 100%;
+  border-radius: 8px;
+}
+
+.chart-axis {
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 1;
+}
+
+.day-bar {
+  fill: url(#none);
+  stroke: rgba(0, 0, 0, 0);
+  transition: y 260ms ease, height 260ms ease;
+  transform-origin: bottom center;
+  animation: barPop 520ms ease both;
+}
+
+#dayBar0,
+#dayBar1,
+#dayBar2,
+#dayBar3 {
+  fill: rgba(181, 109, 255, 0.72);
+}
+
+.day-label {
+  fill: var(--muted);
+  font-size: 8px;
+}
+
+.fallback {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.meta {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 16px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--line);
+  margin: 10px 0;
+}
+
+button {
+  margin-top: 10px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 10px 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:hover {
+  filter: brightness(1.06);
+}
+
+.budget-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.22);
+  margin-bottom: 10px;
+}
+
+.budget-title {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.budget-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+input[type="number"] {
+  width: 100%;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(9, 8, 14, 0.9);
+  color: var(--text);
+  padding: 0 10px;
+  font-family: inherit;
+}
+
+button.secondary {
+  margin-top: 0;
+  width: auto;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #42206f, #6b2eb4);
+}
+
+body.profile-proxy .title {
+  letter-spacing: 1.2px;
+}
+
+body.profile-proxy .hero-value {
+  font-size: 38px;
+}
+
+body.profile-proxy .chart-card {
+  display: none;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(0) scale(1);
+  }
+}
+
+@keyframes heroSweep {
+  0% { transform: translateX(-130%); }
+  60% { transform: translateX(130%); }
+  100% { transform: translateX(130%); }
+}
+
+@keyframes barPop {
+  from { opacity: 0.35; transform: scaleY(0.08); }
+  to { opacity: 1; transform: scaleY(1); }
+}
