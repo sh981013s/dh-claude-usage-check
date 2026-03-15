@@ -39,6 +39,17 @@ npm run dist
 - `DH Claude Proxy Monitor-<version>-arm64.dmg`
 - `DH Claude Proxy Monitor-<version>-arm64.zip`
 
+## 서명/노타라이즈 배포(v0.1.2+)
+릴리즈 워크플로우는 아래 Secrets가 모두 설정되면 자동으로 서명 + 노타라이즈 빌드를 수행합니다.
+
+- `CSC_LINK`
+- `CSC_KEY_PASSWORD`
+- `APPLE_ID`
+- `APPLE_APP_SPECIFIC_PASSWORD`
+- `APPLE_TEAM_ID`
+
+Secrets가 없으면 unsigned 빌드로 fallback 됩니다.
+
 ## 문제 해결
 - 사용량이 안 보이면 `~/.claude/settings.json`의 프록시 설정과 Claude 로그인 상태를 먼저 확인하세요.
 - 디버그 로그 확인:

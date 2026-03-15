@@ -1,6 +1,6 @@
 {
   "name": "deliveryhero-claude-proxy-monitor",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "DeliveryHero proxy usage monitor for Claude Code on macOS menu bar",
   "private": false,
   "main": "src/main.js",
@@ -9,8 +9,9 @@
     "scan:usage": "node scripts/claude-usage-scan.js /tmp/claude-debug.txt",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --mac dmg zip --publish never",
-    "dist:mac": "electron-builder --mac dmg zip --publish never",
-    "release:dry": "electron-builder --mac dmg zip --publish never"
+    "dist:mac": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg zip --publish never",
+    "dist:mac:signed": "electron-builder --mac dmg zip --publish never",
+    "release:dry": "CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg zip --publish never"
   },
   "author": "DeliveryHero",
   "license": "MIT",
@@ -38,9 +39,10 @@
     },
     "mac": {
       "category": "public.app-category.developer-tools",
-      "identity": null,
-      "hardenedRuntime": false,
+      "hardenedRuntime": true,
       "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.inherit.plist",
       "target": [
         "dmg",
         "zip"
