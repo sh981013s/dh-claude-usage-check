@@ -2,6 +2,10 @@
 
 macOS menu bar app (Electron) for monitoring Claude usage in DeliveryHero proxy/LiteLLM environments.
 
+## Demo
+![Menu bar demo](docs/images/demo-menubar.png)
+![Panel demo](docs/images/demo-panel.png)
+
 ## Features
 - Tray percentage in macOS menu bar
 - Popup status panel with animated metrics
